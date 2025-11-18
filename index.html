@@ -3,17 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO REQUIRED -->
+<meta name="description" content="Main homepage for the WDD231 course created by Andrea. This site includes activities, exercises, and web development projects.">
+<meta name="author" content="Andrea Carolina García">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
 <title>W01 Course Home</title>
 
-
 <!-- CSS -->
-<link rel="stylesheet" href="css/small.css">
-<link rel="stylesheet" href="css/larger.css">
+<link rel="stylesheet" href="styles/small.css">
+<link rel="stylesheet" href="styles/larger.css">
 </head>
+
 <body>
 
 
+<header>
+    <h1>WDD231 — Course Home</h1>
+
+    <nav role="navigation">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Certificados</a></li>
+            <li><a href="#">Proyectos</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- END HEADER -->
+
+
+<!-- MAIN CONTENT — MUST BE AFTER HEADER -->
 <main id="main" class="site-main" role="main">
+
 <section class="hero">
 <h1>Inicio</h1>
 <p class="lead">Bienvenida a la página principal de mi curso — proyecto W01. Esta página es responsiva, accesible y genera contenido dinámicamente usando JavaScript.</p>
@@ -42,7 +67,7 @@
 <section class="certificates" aria-labelledby="certsTitle">
 <h2 id="certsTitle">Certificados — Cursos</h2>
 
-
+<!-- FILTER BUTTONS -->
 <div class="controls">
 <button class="filter-btn" data-filter="all">Todos</button>
 <button class="filter-btn" data-filter="WDD">WDD</button>
@@ -50,10 +75,8 @@
 <button class="filter-btn" data-filter="ITM">ITM</button>
 </div>
 
-
-<div id="courseList" class="course-list" aria-live="polite">
-</div>
-
+<!-- COURSE LIST -->
+<div id="courseList" class="course-list" aria-live="polite"></div>
 
 <div class="credits">Total de créditos: <span id="totalCredits">0</span></div>
 </section>
@@ -63,11 +86,15 @@
 <h2>Detalles</h2>
 <p>Puedes filtrar la lista de cursos usando los botones. Los cursos completados muestran un estilo distinto.</p>
 </section>
+
 </main>
+<!-- END MAIN -->
 
 
+<!-- FOOTER MUST BE LAST -->
 <footer class="site-footer" role="contentinfo">
 <div class="footer-grid">
+
 <div class="social">
 <h3>Redes</h3>
 <ul>
@@ -77,25 +104,23 @@
 </ul>
 </div>
 
-
 <div class="meta">
 <p>&copy; <span id="copyrightYear"></span> Andrea — Guatemala</p>
 <p id="lastModified">Última modificación: <span class="visually-hidden">document.lastModified</span></p>
 </div>
 
-
 <div class="location">
 <p>Guatemala</p>
 </div>
+
 </div>
 </footer>
 
 
 <!-- JS -->
-<script src="js/navigation.js"></script>
-<script src="js/date.js"></script>
-<script src="js/course.js"></script>
-
+<script src="scripts/navigation.js"></script>
+<script src="scripts/date.js"></script>
+<script src="scripts/course.js"></script>
 
 </body>
 </html>
