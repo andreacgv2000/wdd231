@@ -12,7 +12,7 @@
 * { box-sizing: border-box; }
 body { margin:0; font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.4; }
 .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
-    
+
 
 /* Header */
 .site-header { background: linear-gradient(90deg,var(--primary),var(--secondary)); color: #fff; }
@@ -49,3 +49,27 @@ body { margin:0; font-family: var(--font); color: var(--text); background: var(-
 
 /* Accessibility focus */
 button:focus, a:focus { outline: 3px solid #ffb7; }
+
+
+
+
+
+
+/* --- Hero Section --- */
+.hero { position: relative; text-align: center; margin-bottom: 2rem; }
+.hero-img { width: 100%; max-height: 400px; object-fit: cover; }
+.hero-text { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); color:#fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.6); }
+.cta-btn { display: inline-block; background: var(--secondary); color:#fff; padding:0.75rem 1.5rem; text-decoration:none; border-radius:6px; font-weight:bold; }
+
+/* --- Events Section --- */
+.events { margin-bottom: 2rem; }
+.events h2 { margin-bottom:0.5rem; }
+
+/* --- Weather Section --- */
+.weather { margin-bottom: 2rem; }
+.weather h2 { margin-bottom:0.5rem; }
+.weather ul { list-style: none; padding:0; margin:0.5rem 0 0 0; }
+
+/* --- Spotlights Section --- */
+.spotlight { margin-bottom:2rem; }
+

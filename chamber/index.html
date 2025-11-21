@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guatemala Chamber Home</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Normalize + Custom CSS -->
+  <link rel="stylesheet" href="styles/normalize.css">
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">Guatemala Chamber</h1>
+      <button id="menuToggle" class="menu-toggle" aria-expanded="false">☰</button>
+      <nav id="mainNav" class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="directory.html">Directory</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="images/hero.jpg" alt="Guatemala Chamber Hero Image" class="hero-img">
+    <div class="hero-text">
+      <h2>Welcome to the Guatemala Chamber of Commerce</h2>
+      <a href="#" class="cta-btn">Join Now</a>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Current Events -->
+    <section class="events">
+      <h2>Current Events</h2>
+      <p>Stay updated with our latest events and workshops.</p>
+    </section>
+
+    <!-- Weather Section -->
+    <section class="weather">
+      <h2>Local Weather</h2>
+      <div id="weather">
+        <p>Loading weather...</p>
+      </div>
+    </section>
+
+    <!-- Company Spotlight -->
+    <section class="spotlight">
+      <h2>Company Spotlights</h2>
+      <div id="spotlights" class="directory grid-view"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="contact">
+        <p><strong>Andrea Carolina Garcia</strong> — WDD 231</p>
+        <p>123 Main St, Guatemala · (555) 555-5555</p>
+      </div>
+      <div class="meta">
+        <p>&copy; <span id="year"></span> Guatemala Chamber</p>
+        <p>Last modified: <span id="lastModified"></span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="scripts/main.js" type="module"></script>
+</body>
+</html>

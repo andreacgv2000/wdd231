@@ -133,3 +133,71 @@ function init() {
 // Ejecutar inicialización
 init();
 
+
+
+
+
+
+
+// --- Home Page: Spotlights aleatorios (Gold/Silver) ---
+async function showSpotlights() {
+    try {
+        const response = await fetch('data/members.json');
+        const members = await response.json();
+        const filtered = members.filter(m => m.level === 1 || m.level === 2);
+        const shuffled = filtered.sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0,3);
+
+        const spotlightsEl = document.getElementById('spotlights');
+        if (!spotlightsEl) return;
+
+        spotlightsEl.innerHTML = '';
+        selected.forEach(m => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="images/${m.image}" alt="${m.name} logo">
+                <h3><a href="${m.website}" target="_blank" rel="noopener">${m.name}</a></h3>
+                <p class="meta">${m.address} · ${m.phone}</p>
+            `;
+            spotlightsEl.appendChild(card);
+        });
+    } catch (err) {
+        console.error("Error loading spotlights:", err);
+    }
+}
+
+// --- Home Page: Weather usando OpenWeatherMap API ---
+async function loadWeather() {
+    const apiKey = 'TU_API_KEY';
+    const city = 'Guatemala';
+    try {
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
+        const data = await res.json();
+
+        const weatherEl = document.getElementById('weather');
+        if (!weatherEl) return;
+
+        const current = data.list[0];
+        const forecast = data.list.filter((_,i)=>i%8===0).slice(0,3); // 3 días
+
+        let html = `<p>Current: ${current.main.temp}°C, ${current.weather[0].description}</p>`;
+        html += '<ul>';
+        forecast.forEach(f => {
+            const date = new Date(f.dt*1000).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+            html += `<li>${date}: ${f.main.temp}°C</li>`;
+        });
+        html += '</ul>';
+        weatherEl.innerHTML = html;
+    } catch(err) {
+        console.error("Weather load error:", err);
+    }
+}
+
+// --- Ejecutar en Home Page ---
+if (document.getElementById('spotlights')) {
+    showSpotlights();
+    loadWeather();
+}
+
+
