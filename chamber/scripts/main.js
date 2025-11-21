@@ -224,9 +224,46 @@ if (document.getElementById('spotlights')) {
 }
 
 
-const menuButton = document.getElementById("menu-button");
-const navMenu = document.getElementById("nav-menu");
 
-menuButton.addEventListener("click", () => {
-  navMenu.classList.toggle("show-menu");
+
+
+
+// ===== Mobile menu toggle (añadir al final de scripts/main.js) =====
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menuToggle'); // tu botón
+  const mainNav = document.getElementById('mainNav');       // el nav
+
+  if (!menuToggle || !mainNav) {
+    // Si no existen elementos, no hacemos nada (evita errores)
+    // Puedes ver en consola si algo falta
+    // console.log('menuToggle or mainNav missing', menuToggle, mainNav);
+    return;
+  }
+
+  // Asegura estado inicial correcto
+  menuToggle.setAttribute('aria-expanded', 'false');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Cerrar nav si se hace click fuera (mejora UX)
+  document.addEventListener('click', (e) => {
+    if (!mainNav.classList.contains('open')) return;
+    // si el click no fue sobre el nav ni sobre el botón, cerrar
+    if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+      mainNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mainNav.classList.contains('open')) {
+      mainNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.focus();
+    }
+  });
 });
