@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guatemala Chamber Directory</title>
+<meta name="description" content="Browse the official business directory of the Guatemala Chamber of Commerce.">
+<meta name="author" content="Andrea Carolina García">
+
+<!-- Open Graph / Facebook meta -->
+<meta property="og:title" content="Guatemala Chamber Directory">
+<meta property="og:description" content="Find local businesses, services, and members of the Guatemala Chamber of Commerce.">
+<meta property="og:image" content="https://your-github-username.github.io/wdd231/chamber/images/og-image.jpg">
+<meta property="og:url" content="https://your-github-username.github.io/wdd231/chamber/directory.html">
+
+<!-- favicon -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+<!-- Normalize CSS -->
+<link rel="stylesheet" href="styles/normalize.css">
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="styles/styles.css">
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <h1 class="logo">Guatemala Chamber</h1>
+    <button id="menuToggle" class="menu-toggle" aria-expanded="false">☰</button>
+    <nav id="mainNav" class="main-nav">
+      <ul>
+        <li><a href="directory.html" aria-current="page">Directory</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Members</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="controls">
+    <h2>Business Directory</h2>
+    <div class="view-controls" role="group" aria-label="View toggle">
+      <button id="gridBtn" class="active" aria-pressed="true">Grid View</button>
+      <button id="listBtn" aria-pressed="false">List View</button>
+    </div>
+  </section>
+
+  <section id="directory" class="directory grid-view" aria-live="polite">
+    <!-- JS injects members here -->
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="contact">
+      <p><strong>Andrea Carolina García</strong> — WDD 231</p>
+      <p>123 Main St, Guatemala · (555) 555-5555</p>
+    </div>
+    <div class="meta">
+      <p>&copy; <span id="year"></span> Guatemala Chamber</p>
+      <p>Last modified: <span id="lastModified"></span></p>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/main.js" type="module"></script>
+
+</body>
+</html>
