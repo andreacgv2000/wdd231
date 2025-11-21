@@ -167,32 +167,55 @@ async function showSpotlights() {
     }
 }
 
-// --- Home Page: Weather usando OpenWeatherMap API ---
-async function loadWeather() {
-    const apiKey = 'TU_API_KEY';
-    const city = 'Guatemala';
-    try {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
-        const data = await res.json();
+/// --- Seleccionar elementos del DOM ---
+const currentTemp = document.querySelector('#current-temp');
+const weatherIcon = document.querySelector('#weather-icon');
+const captionDesc = document.querySelector('figcaption');
 
-        const weatherEl = document.getElementById('weather');
-        if (!weatherEl) return;
+// --- Configuración de la API ---
+const apiKey = '313afd51d908d61f0d2f693b86573714'; 
+const lat = 14.6349;               // Latitud de Guatemala
+const lon = -90.5069;              // Longitud de Guatemala
+const units = 'metric';            // "imperial" para °F
+const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
 
-        const current = data.list[0];
-        const forecast = data.list.filter((_,i)=>i%8===0).slice(0,3); // 3 días
-
-        let html = `<p>Current: ${current.main.temp}°C, ${current.weather[0].description}</p>`;
-        html += '<ul>';
-        forecast.forEach(f => {
-            const date = new Date(f.dt*1000).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
-            html += `<li>${date}: ${f.main.temp}°C</li>`;
-        });
-        html += '</ul>';
-        weatherEl.innerHTML = html;
-    } catch(err) {
-        console.error("Weather load error:", err);
+// --- Función para obtener datos de la API ---
+async function apiFetch() {
+  try {
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data); // Para depuración
+      displayResults(data);
+    } else {
+      throw Error(await response.text());
     }
+  } catch (error) {
+    console.error("Error fetching weather:", error);
+    currentTemp.textContent = 'N/A';
+    captionDesc.textContent = 'Unable to load weather';
+  }
 }
+
+// --- Función para mostrar resultados en el HTML ---
+function displayResults(data) {
+  // Temperatura
+  const temp = Math.round(data.main.temp);
+  currentTemp.innerHTML = `${temp}&deg;C`;
+
+  // Ícono del clima
+  const iconCode = data.weather[0].icon; // por ejemplo: "10d"
+  const iconSrc = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  weatherIcon.setAttribute('src', iconSrc);
+  weatherIcon.setAttribute('alt', data.weather[0].description);
+
+  // Descripción
+  captionDesc.textContent = data.weather[0].description;
+}
+
+// --- Ejecutar la función ---
+apiFetch();
+
 
 // --- Ejecutar en Home Page ---
 if (document.getElementById('spotlights')) {
