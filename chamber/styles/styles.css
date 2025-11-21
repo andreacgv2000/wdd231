@@ -148,8 +148,9 @@ button:focus, a:focus { outline: 3px solid #ffb7; }
 }
 
 /* --- DESKTOP MENU --- */
-@media (min-w
-
+@media (min-width: 768px) {
+  /* tus estilos */
+}
 
 
 /* FIX FINAL — Fuerza el menú en móvil */
