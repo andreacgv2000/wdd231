@@ -1,5 +1,5 @@
 [
-  {"name":"Central Bakery","address":"101 Main St, Guatemala","phone":"(555) 101-0001","website":"https://example.com/central-bakery","image":"biz1.jpg","level":1},
+  {"name":"Central Bakery","address":"101 Main St, Guatemala","phone":"(555) 101-0001","website":"https://example.com/central-bakery","image":"/wdd231/chamber/images/backery.png","level":1},
   {"name":"Riverside Plumbing","address":"22 River Ave, Guatemala","phone":"(555) 202-0002","website":"https://example.com/riverside-plumbing","image":"biz2.jpg","level":2},
   {"name":"GreenLeaf Pharmacy","address":"8 Health Blvd, Guatemala","phone":"(555) 303-0003","website":"https://example.com/greenleaf-pharmacy","image":"biz3.jpg","level":3},
   {"name":"Sunrise Travel","address":"44 Travel Lane, Guatemala","phone":"(555) 404-0004","website":"https://example.com/sunrise-travel","image":"biz4.jpg","level":1},
