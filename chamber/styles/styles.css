@@ -73,3 +73,39 @@ button:focus, a:focus { outline: 3px solid #ffb7; }
 /* --- Spotlights Section --- */
 .spotlight { margin-bottom:2rem; }
 
+
+
+/* Menú oculto en móvil */
+#nav-menu {
+  display: none;
+  flex-direction: column;
+  background: white;
+  padding: 1rem;
+}
+
+/* Botón hamburguesa visible en móvil */
+#menu-button {
+  display: block;
+  font-size: 2rem;
+  background: none;
+  border: none;
+}
+
+/* En pantallas grandes mostrar menú normal */
+@media (min-width: 768px) {
+  #nav-menu {
+    display: flex !important;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  #menu-button {
+    display: none;
+  }
+}
+
+/* Clase que aparece cuando se abre el menú */
+.show-menu {
+  display: flex !important;
+}
+
