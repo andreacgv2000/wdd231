@@ -1,7 +1,7 @@
 [
-  {"name":"Central Bakery","address":"101 Main St, Guatemala","phone":"(555) 101-0001","website":"https://example.com/central-bakery","image":"images/backery.png","level":1},
-  {"name":"Riverside Plumbing","address":"22 River Ave, Guatemala","phone":"(555) 202-0002","website":"https://example.com/riverside-plumbing","image":"images/plumbing.png","level":2},
-  {"name":"GreenLeaf Pharmacy","address":"8 Health Blvd, Guatemala","phone":"(555) 303-0003","website":"https://example.com/greenleaf-pharmacy","image":"images/pharmacy.webp","level":3},
+  {"name":"Central Bakery","address":"101 Main St, Guatemala","phone":"(555) 101-0001","website":"https://example.com/central-bakery","image":"backery.png","level":1},
+  {"name":"Riverside Plumbing","address":"22 River Ave, Guatemala","phone":"(555) 202-0002","website":"https://example.com/riverside-plumbing","image":"plumbing.png","level":2},
+  {"name":"GreenLeaf Pharmacy","address":"8 Health Blvd, Guatemala","phone":"(555) 303-0003","website":"https://example.com/greenleaf-pharmacy","image":"pharmacy.webp","level":3},
   {"name":"Sunrise Travel","address":"44 Travel Lane, Guatemala","phone":"(555) 404-0004","website":"https://example.com/sunrise-travel","image":"biz4.jpg","level":1},
   {"name":"Lakeside Law Office","address":"77 Justice Rd, Guatemala","phone":"(555) 505-0005","website":"https://example.com/lakeside-law","image":"biz5.jpg","level":2},
   {"name":"Peak Fitness","address":"150 Fitness St, Guatemala","phone":"(555) 606-0006","website":"https://example.com/peak-fitness","image":"biz6.jpg","level":3},
