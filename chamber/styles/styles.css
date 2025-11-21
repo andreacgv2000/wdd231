@@ -123,3 +123,56 @@ button:focus, a:focus { outline: 3px solid #ffb7; }
   #mainNav { display: block; position: static; background: none; box-shadow: none; padding: 0; }
   #mainNav ul { flex-direction: row; gap: 1rem; }
 }
+
+
+
+
+
+
+/* --- MENU TOGGLE (MOBILE) --- */
+.menu-toggle {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none; /* Se muestra solo en móviles */
+}
+
+/* Mostrar botón hamburguesa en pantallas pequeñas */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    display: none; /* Oculto por defecto */
+    background-color: white; /* Fondo blanco para que se vea */
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+
+  .main-nav.open {
+    display: block; /* Se muestra al presionar el botón */
+  }
+
+  .main-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .main-nav ul li a {
+    color: #000; /* Texto negro para que sea visible */
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+}
+
+/* --- DESKTOP MENU --- */
+@media (min-w
