@@ -76,35 +76,87 @@ button:focus, a:focus { outline: 3px solid #ffb7; }
 
 
 
-/* Header */
-.site-header { background: linear-gradient(90deg,var(--primary),var(--secondary)); color: #fff; }
-.header-inner { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; }
-.logo { margin: 0; font-size: 1.25rem; }
 
-/* Botón hamburguesa (solo móvil) */
+
+
+
+/* Botón hamburguesa visible en móvil (y oculto en desktop) */
+.menu-toggle {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* En pantallas grandes mostrar siempre el nav y ocultar el botón */
+@media (min-width: 640px) {
+  .menu-toggle { display: none; }
+  #mainNav { display: block; position: static; background: none; box-shadow: none; padding: 0; }
+  #mainNav ul { flex-direction: row; gap: 1rem; }
+}
+
+
+
+
+
+
+/* --- MENU TOGGLE (MOBILE) --- */
 .menu-toggle {
   font-size: 2rem;
   background: none;
   border: none;
   cursor: pointer;
-  color: #fff;
-  display: none; 
+  display: none; /* Se muestra solo en móviles */
 }
 
-/* Nav desktop */
-.main-nav {
-  display: flex;
+/* Mostrar botón hamburguesa en pantallas pequeñas */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    display: none; /* Oculto por defecto */
+    background-color: white; /* Fondo blanco para que se vea */
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+
+  .main-nav.open {
+    display: block; /* Se muestra al presionar el botón */
+  }
+
+  .main-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .main-nav ul li a {
+    color: #000; /* Texto negro para que sea visible */
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
 }
 
-.main-nav ul { 
-  list-style: none; 
-  margin: 0; 
-  padding: 0; 
-  display: flex; 
-  gap: 1rem; 
+/* --- DESKTOP MENU --- */
+@media (min-width: 768px) {
+  /* tus estilos */
 }
-.main-nav a { 
-  color: #fff; 
-  text-decoration: none; 
-  padding: 0.25rem 0.5rem; 
+
+
+/* FIX FINAL — Fuerza el menú en móvil */
+@media (max-width: 768px) {
+    #mainNav.open,
+    .main-nav.open {
+        display: block !important;
+    }
 }
