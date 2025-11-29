@@ -180,12 +180,17 @@ button:focus, a:focus { outline: 3px solid #ffb7; }
 
 
 /* FIX FINAL — Fuerza el menú en móvil */
+
+
+
 @media (max-width: 768px) {
     #mainNav.open,
     .main-nav.open {
         display: block !important;
     }
 }
+
+
 
 
 

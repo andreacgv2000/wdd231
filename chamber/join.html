@@ -7,6 +7,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Main homepage for the WDD231 course created by Andrea. This site includes activities, exercises, and web development projects.">
 <meta name="author" content="Andrea Carolina García">
+
+
+<!-- Favicon -->
+<link rel="icon" href="images/favicon.ico">
+
+<!-- Open Graph Metadata -->
+<meta property="og:title" content="Join the Guatemala Chamber of Commerce – Membership Benefits & Opportunities">
+<meta property="og:description" content="Become a member of the Guatemala Chamber of Commerce and gain access to community resources, business exposure, networking opportunities, and exclusive membership benefits.">
+<meta property="og:image" content="https://andreacgv2000.github.io/wdd231/chamber/images/web.jpeg">
+<meta property="og:url" content="https://andreacgv2000.github.io/wdd231/chamber/join.html">
+<meta property="og:type" content="website">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -33,6 +45,18 @@
 
 
 <form method="get" action="thankyou.html">
+
+<label for="firstName">First Name</label>
+<input 
+  type="text" 
+  id="firstName" 
+  name="firstName" 
+  required 
+  autocomplete="given-name" 
+  title="Enter your first name"
+/>
+
+
 <label>
 Last Name
 <input type="text" name="last" required title="Enter your last name" autocomplete="family-name">
@@ -73,11 +97,9 @@ Membership Level
 <option value="silver">Silver Membership</option>
 <option value="gold">Gold Membership</option>
 </select>
-</label>
+<label for="description">Business Description</label>
+<textarea id="description" name="description" title="Describe your business"></textarea>
 
-Business Description
-<textarea name="description" title="Describe your organization"></textarea>
-</label>
 
 
 <input type="hidden" id="timestamp" name="timestamp">
