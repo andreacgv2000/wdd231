@@ -44,69 +44,98 @@
 <h2>Membership Application</h2>
 
 
-<form method="get" action="thankyou.html">
+<form method="get" action="thankyou.html" class="join-form">
+    
+    <!-- FIRST NAME -->
+    <label for="firstName">First Name</label>
+    <input 
+      type="text" 
+      id="firstName" 
+      name="firstName" 
+      required 
+      autocomplete="given-name"
+      title="Enter your first name"
+    >
 
-<label for="firstName">First Name</label>
-<input 
-  type="text" 
-  id="firstName" 
-  name="firstName" 
-  required 
-  autocomplete="given-name" 
-  title="Enter your first name"
-/>
+    <!-- LAST NAME -->
+    <label for="lastName">Last Name</label>
+    <input 
+      type="text"
+      id="lastName"
+      name="lastName"
+      required
+      autocomplete="family-name"
+      title="Enter your last name"
+    >
 
+    <!-- ORGANIZATION TITLE -->
+    <label for="orgTitle">Organization Title</label>
+    <input 
+      type="text"
+      id="orgTitle"
+      name="orgTitle"
+      required
+      title="Enter your job title"
+    >
 
-<label>
-Last Name
-<input type="text" name="last" required title="Enter your last name" autocomplete="family-name">
-</label>
+    <!-- EMAIL -->
+    <label for="email">Email Address</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+      title="Enter your email"
+    >
 
+    <!-- PHONE -->
+    <label for="phone">Mobile Phone</label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      required
+      autocomplete="tel"
+      title="Enter your mobile phone"
+    >
 
-<label>
-Organizational Title
-<input type="text" name="title" autocomplete="organization-title"
-title="Letters, hyphens, and spaces only. Minimum 7 characters."
-pattern="[A-Za-z\-\s]{7,}">
-</label>
+    <!-- ORGANIZATION NAME -->
+    <label for="orgName">Organization Name</label>
+    <input
+      type="text"
+      id="orgName"
+      name="orgName"
+      required
+      title="Enter your organization name"
+    >
 
+    <!-- MEMBERSHIP LEVEL – FIX: REQUIRED NEEDS EMPTY FIRST OPTION -->
+    <label for="membership">Membership Level</label>
+    <select id="membership" name="membership" required>
+      <option value="" disabled selected>Select a membership level...</option>
+      <option value="np">NP Membership</option>
+      <option value="bronze">Bronze Membership</option>
+      <option value="silver">Silver Membership</option>
+      <option value="gold">Gold Membership</option>
+    </select>
 
-<label>
-Email
-<input type="email" name="email" required title="Enter your email address" autocomplete="email" placeholder="example@email.com">
-</label>
+    <!-- DESCRIPTION -->
+    <label for="description">Business Description</label>
+    <textarea 
+      id="description" 
+      name="description" 
+      title="Describe your business"
+      required
+    ></textarea>
 
+    <!-- TIMESTAMP (HIDDEN) -->
+    <input type="hidden" id="timestamp" name="timestamp">
 
-<label>
-Mobile Phone
-<input type="tel" name="phone" required title="Enter your mobile number" autocomplete="tel">
-</label>
+    <!-- SUBMIT BUTTON -->
+    <button type="submit">Submit</button>
 
-
-<label>
-Business / Organization Name
-<input type="text" name="organization" required autocomplete="organization" title="Enter your business or organization name">
-</label>
-
-
-<label>
-Membership Level
-<select name="membership" required>
-<option value="np">NP Membership (No fee)</option>
-<option value="bronze">Bronze Membership</option>
-<option value="silver">Silver Membership</option>
-<option value="gold">Gold Membership</option>
-</select>
-<label for="description">Business Description</label>
-<textarea id="description" name="description" title="Describe your business"></textarea>
-
-
-
-<input type="hidden" id="timestamp" name="timestamp">
-
-
-<button type="submit">Submit Application</button>
-</form>
+  </form>
 </section>
 
 
