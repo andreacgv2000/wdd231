@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Main homepage for the WDD231 course created by Andrea. This site includes activities, exercises, and web development projects.">
+<meta name="author" content="Andrea Carolina García">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<title>Chamber Membership – Join</title>
+<link rel="stylesheet" href="styles/styles.css">
+<link rel="stylesheet" href="styles/normalize.css">
+</head>
+<body>
+<header>
+<h1>Join Our Chamber</h1>
+<nav>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="directory.html">Directory</a></li>
+<li><a href="join.html" class="active">Join</a></li>
+</ul>
+</nav>
+</header>
+
+
+<main class="join-container">
+<section class="form-section">
+<h2>Membership Application</h2>
+
+
+<form method="get" action="thankyou.html">
+<label>
+Last Name
+<input type="text" name="last" required title="Enter your last name" autocomplete="family-name">
+</label>
+
+
+<label>
+Organizational Title
+<input type="text" name="title" autocomplete="organization-title"
+title="Letters, hyphens, and spaces only. Minimum 7 characters."
+pattern="[A-Za-z\-\s]{7,}">
+</label>
+
+
+<label>
+Email
+<input type="email" name="email" required title="Enter your email address" autocomplete="email" placeholder="example@email.com">
+</label>
+
+
+<label>
+Mobile Phone
+<input type="tel" name="phone" required title="Enter your mobile number" autocomplete="tel">
+</label>
+
+
+<label>
+Business / Organization Name
+<input type="text" name="organization" required autocomplete="organization" title="Enter your business or organization name">
+</label>
+
+
+<label>
+Membership Level
+<select name="membership" required>
+<option value="np">NP Membership (No fee)</option>
+<option value="bronze">Bronze Membership</option>
+<option value="silver">Silver Membership</option>
+<option value="gold">Gold Membership</option>
+</select>
+</label>
+
+Business Description
+<textarea name="description" title="Describe your organization"></textarea>
+</label>
+
+
+<input type="hidden" id="timestamp" name="timestamp">
+
+
+<button type="submit">Submit Application</button>
+</form>
+</section>
+
+
+<aside class="membership-cards">
+<div class="card" data-modal="npModal">NP Membership</div>
+<div class="card" data-modal="bronzeModal">Bronze Membership</div>
+<div class="card" data-modal="silverModal">Silver Membership</div>
+<div class="card" data-modal="goldModal">Gold Membership</div>
+</aside>
+</main>
+
+
+<!-- NP Modal -->
+<div id="npModal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<h3>NP Membership</h3>
+<p>Benefits for nonprofit organizations at no cost.</p>
+</div>
+</div>
+
+
+<!-- Bronze Modal -->
+<div id="bronzeModal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<h3>Bronze Membership</h3>
+<p>Includes basic advertising and event access.</p>
+</div>
+</div>
+
+
+<!-- Silver Modal -->
+<div id="silverModal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<h3>Silver Membership</h3>
+<p>Includes featured directory spot + event discounts.</p>
+</div>
+</div>
+
+
+<!-- Gold Modal -->
+<div id="goldModal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<h3>Gold Membership</h3>
+<p>Maximum benefits: spotlight promotions, full advertising, premium placement.</p>
+</div>
+</div>
+
+
+<footer>
+<p>&copy; 2025 Chamber of Commerce</p>
+</footer>
+<script src="scripts/main.js" type="module"></script>
+</body>
+</html>

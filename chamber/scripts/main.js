@@ -267,3 +267,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+// AUTOFILL TIMESTAMP
+const timestampField = document.getElementById("timestamp");
+if (timestampField) {
+timestampField.value = new Date().toLocaleString();
+}
+
+
+// MODAL FUNCTIONALITY
+const cards = document.querySelectorAll('.card');
+const modals = document.querySelectorAll('.modal');
+const closes = document.querySelectorAll('.close');
+
+
+cards.forEach(card => {
+card.addEventListener('click', () => {
+document.getElementById(card.dataset.modal).style.display = "block";
+});
+});
+
+
+closes.forEach(close => {
+close.addEventListener('click', () => {
+close.parentElement.parentElement.style.display = "none";
+});
+});
+
+
+window.addEventListener('click', e => {
+if (e.target.classList.contains('modal')) {
+e.target.style.display = "none";
+}
+});
