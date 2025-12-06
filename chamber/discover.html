@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guatemala Chamber — Discover</title>
+
+  <meta name="description" content="Discover the best places and attractions around Guatemala — curated by the Guatemala Chamber." />
+  <meta name="author" content="Andrea Carolina Garcia" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+  <!-- Google Fonts (same as index) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Normalize + Shared CSS -->
+  <link rel="stylesheet" href="styles/normalize.css">
+  <link rel="stylesheet" href="styles/styles.css">
+
+ 
+</head>
+<body>
+  <!-- Header (preserve structure from index) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">Guatemala Chamber</h1>
+      <button id="menuToggle" class="menu-toggle" aria-expanded="false">☰</button>
+      <nav id="mainNav" class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="directory.html">Directory</a></li>
+          <li><a href="discover.html" aria-current="page">Discover</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page intro / hero -->
+  <section class="discover-hero">
+    <div class="container">
+      <h2>Discover Guatemala — Top 8 Local Attractions</h2>
+      <p class="lead">Factual, representative info for visitors and prospective members.</p>
+    </div>
+  </section>
+
+  <!-- Visitor message (localStorage) -->
+  <div id="visitMessage" class="visit-message" aria-live="polite" hidden>
+    <div class="container visit-inner">
+      <p id="visitText"></p>
+      <button id="closeVisit" class="btn small">Close</button>
+    </div>
+  </div>
+
+  <!-- Discover grid -->
+  <main class="container discover-main" id="discoverMain">
+    <section class="discover-grid" id="discoverGrid" aria-label="Places of interest">
+      <!-- Cards inserted here by scripts/discover.js -->
+    </section>
+  </main>
+
+  <!-- Footer (preserve) -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="contact">
+        <p><strong>Andrea Carolina Garcia</strong> — WDD 231</p>
+        <p>123 Main St, Guatemala · (555) 555-5555</p>
+      </div>
+      <div class="meta">
+        <p>&copy; <span id="year"></span> Guatemala Chamber</p>
+        <p>Last modified: <span id="lastModified"></span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared scripts (main.js keeps menu behavior, footer dates, etc.) -->
+  <script src="scripts/main.js" type="module"></script>
+
+  
+</body>
+</html>

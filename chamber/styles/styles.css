@@ -317,3 +317,189 @@ button:focus, a:focus { outline: 3px solid #ffb7; }
   }
 }
 
+
+
+
+
+
+
+/* discover.css
+   Styles specific for discover.html
+   This file uses named grid areas for small / medium / large breakpoints
+*/
+
+/* Base for discover grid */
+.discover-hero {
+  background: linear-gradient(90deg, rgba(51,5,74,0.95), rgba(0,45,170,0.9));
+  color: #fff;
+  padding: 2rem 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.discover-hero .lead { opacity: 0.95; margin-top: 0.5rem; }
+
+/* Visit message banner */
+.visit-message {
+  background: rgba(255, 243, 205, 0.95);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0.5rem 0;
+}
+.visit-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.visit-inner p { margin: 0; font-weight: 600; color: #333; }
+.btn.small {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: .4rem .7rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Discover grid: container uses CSS Grid with named areas */
+.discover-grid {
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: auto;
+  margin-bottom: 2rem;
+  /* default for small screens (mobile) */
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "card1"
+    "card2"
+    "card3"
+    "card4"
+    "card5"
+    "card6"
+    "card7"
+    "card8";
+}
+
+/* Card design — preserve card style but adapt sizes */
+.discover-grid .card {
+  background: var(--card-bg);
+  border: 1px solid #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.discover-grid .card h2 {
+  margin: 0;
+  padding: 0.75rem 1rem 0;
+  font-size: 1.05rem;
+  color: var(--primary);
+}
+.discover-grid .card figure {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+.discover-grid .card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform .35s ease, filter .35s ease;
+}
+.discover-grid .card .card-body {
+  padding: 0.75rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.discover-grid address {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.discover-grid p.description {
+  margin: 0;
+  color: #222;
+}
+.discover-grid .learn {
+  margin-top: auto;
+  align-self: start;
+  padding: 0.45rem 0.75rem;
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Assign grid-area names to each nth-child so the template areas apply */
+.discover-grid .card:nth-child(1) { grid-area: card1; }
+.discover-grid .card:nth-child(2) { grid-area: card2; }
+.discover-grid .card:nth-child(3) { grid-area: card3; }
+.discover-grid .card:nth-child(4) { grid-area: card4; }
+.discover-grid .card:nth-child(5) { grid-area: card5; }
+.discover-grid .card:nth-child(6) { grid-area: card6; }
+.discover-grid .card:nth-child(7) { grid-area: card7; }
+.discover-grid .card:nth-child(8) { grid-area: card8; }
+
+/* -----------------------
+   Medium screens (641 - 1024)
+   Two column layout using named areas
+   ----------------------- */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .discover-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "card1 card2"
+      "card3 card4"
+      "card5 card6"
+      "card7 card8";
+  }
+  .discover-grid .card img { height: 180px; }
+}
+
+/* -----------------------
+   Large screens (1025px and up)
+   More interesting arrangement — use 4 columns and some larger feature area
+   ----------------------- */
+@media (min-width: 1025px) {
+  .discover-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "card1 card1 card2 card3"
+      "card4 card5 card6 card7"
+      "card8 card8 card6 card7";
+    align-items: start;
+  }
+
+  /* Make the card1 span visually larger */
+  .discover-grid .card:nth-child(1) figure img { height: 260px; }
+
+  .discover-grid .card img { height: 200px; }
+
+  /* Hover image effect only on large screens (not mobile). This meets the requirement:
+     Use CSS property effect on hover for larger views only. */
+  .discover-grid .card figure:hover img {
+    transform: scale(1.05) rotate(0.5deg);
+    filter: saturate(1.1) contrast(1.02);
+  }
+}
+
+/* Prevent hover effect on touch devices that still match large width */
+@media (hover: none) {
+  .discover-grid .card figure:hover img {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* accessibility: focus state for learn button */
+.discover-grid .learn:focus {
+  outline: 3px solid #ffd66b;
+  outline-offset: 2px;
+}
+
+/* small tweaks for container spacing */
+@media (min-width: 900px) {
+  .discover-main { padding-top: 1rem; }
+}
