@@ -1,5 +1,19 @@
 // main.js - Chamber Directory Project
 
+// ==============================
+// Menu Toggle (ALL pages)
+// ==============================
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.getElementById("menu");
+  const nav = document.querySelector("nav");
+
+  if (menuBtn && nav) {
+    menuBtn.addEventListener("click", () => {
+      nav.classList.toggle("open");
+    });
+  }
+});
+
 // Elementos del DOM
 const directoryEl = document.getElementById('directory');
 const gridBtn = document.getElementById('gridBtn');
