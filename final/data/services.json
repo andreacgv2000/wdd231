@@ -1,0 +1,137 @@
+[
+  {
+    "id": "svc-001",
+    "title": "Commercial Solar PV System",
+    "summary": "Design and installation of commercial rooftop and ground-mounted solar photovoltaic systems.",
+    "capacity_kw": 150,
+    "location": "Guatemala City",
+    "image": "images/service1.jpg",
+    "tags": ["solar","design","installation"]
+  },
+  {
+    "id": "svc-002",
+    "title": "Utility-scale Solar Farm",
+    "summary": "Engineering, procurement and construction for utility-scale solar farms.",
+    "capacity_kw": 5000,
+    "location": "Escuintla",
+    "image": "images/service2.jpg",
+    "tags": ["solar","utility","EPC"]
+  },
+  {
+    "id": "svc-003",
+    "title": "Distribution Substation Upgrade",
+    "summary": "Upgrade of 33/13.8kV substations, protection relay retrofits and MV switchgear.",
+    "capacity_kw": null,
+    "location": "Quetzaltenango",
+    "image": "images/service3.jpg",
+    "tags": ["substation","protection"]
+  },
+  {
+    "id": "svc-004",
+    "title": "Industrial Automation",
+    "summary": "PLC/SCADA integration, HMI design and process control optimization.",
+    "capacity_kw": null,
+    "location": "Zone 7",
+    "image": "images/service4.jpg",
+    "tags": ["automation","scada","plc"]
+  },
+  {
+    "id": "svc-005",
+    "title": "Rural Distribution Lines",
+    "summary": "Design and build rural overhead distribution lines and transformer installations.",
+    "capacity_kw": null,
+    "location": "Rural Dept.",
+    "image": "images/service5.jpg",
+    "tags": ["rural","lines","distribution"]
+  },
+  {
+    "id": "svc-006",
+    "title": "Substation Commissioning",
+    "summary": "Field testing, protection coordination and commissioning services.",
+    "capacity_kw": null,
+    "location": "Retalhuleu",
+    "image": "images/service6.jpg",
+    "tags": ["commissioning","testing"]
+  },
+  {
+    "id": "svc-007",
+    "title": "Energy Storage Integration",
+    "summary": "Battery energy storage system design and integration with PV and grid.",
+    "capacity_kw": 250,
+    "location": "Guatemala City",
+    "image": "images/service7.jpg",
+    "tags": ["storage","battery"]
+  },
+  {
+    "id": "svc-008",
+    "title": "Protection Relay Settings",
+    "summary": "Relay configuration, coordination studies and remote telemetry.",
+    "capacity_kw": null,
+    "location": "Multiple",
+    "image": "images/service8.jpg",
+    "tags": ["protection","relay"]
+  },
+  {
+    "id": "svc-009",
+    "title": "Power Quality Studies",
+    "summary": "Harmonic analysis, mitigation solutions and power quality monitoring.",
+    "capacity_kw": null,
+    "location": "Industrial Park",
+    "image": "images/service9.jpg",
+    "tags": ["power quality","monitoring"]
+  },
+  {
+    "id": "svc-010",
+    "title": "EV Charging Infrastructure",
+    "summary": "Design and installation of electric vehicle charging stations and network integration.",
+    "capacity_kw": null,
+    "location": "City",
+    "image": "images/service10.jpg",
+    "tags": ["ev","infrastructure"]
+  },
+  {
+    "id": "svc-011",
+    "title": "Preventive Maintenance Plans",
+    "summary": "Maintenance programs for substations and PV plants to maximize uptime.",
+    "capacity_kw": null,
+    "location": "Nationwide",
+    "image": "images/service11.jpg",
+    "tags": ["maintenance","preventive"]
+  },
+  {
+    "id": "svc-012",
+    "title": "Grid Connection Studies",
+    "summary": "Feasibility and grid interconnection studies for new generation facilities.",
+    "capacity_kw": null,
+    "location": "Guatemala",
+    "image": "images/service12.jpg",
+    "tags": ["studies","grid"]
+  },
+  {
+    "id": "svc-013",
+    "title": "Industrial Energy Efficiency",
+    "summary": "Energy audits and efficiency upgrades for factories and plants.",
+    "capacity_kw": null,
+    "location": "Industrial Zone",
+    "image": "images/service13.jpg",
+    "tags": ["efficiency","audit"]
+  },
+  {
+    "id": "svc-014",
+    "title": "Retrofitting & Modernization",
+    "summary": "Modernization of legacy substations and control systems.",
+    "capacity_kw": null,
+    "location": "Multiple",
+    "image": "images/service14.jpg",
+    "tags": ["retrofit","modernization"]
+  },
+  {
+    "id": "svc-015",
+    "title": "Custom Turnkey Projects",
+    "summary": "End-to-end turnkey projects for bespoke customer needs.",
+    "capacity_kw": null,
+    "location": "Custom",
+    "image": "images/service15.jpg",
+    "tags": ["turnkey","custom"]
+  }
+]

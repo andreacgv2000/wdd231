@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Solvarsa — Solar & Electrical Services</title>
+  <meta name="description" content="Solvarsa provides solar PV systems, substation construction, automation and rural lines. Professional design, installation and commissioning." />
+  <meta name="author" content="Andrea - Solvarsa" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Solvarsa — Solar & Electrical Services" />
+  <meta property="og:description" content="Solar PV systems, substations, industrial automation and rural line projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/logo.svg" />
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="images/logo.svg" alt="Solvarsa logo" class="logo" />
+        <span class="brand-text">Solvarsa</span>
+      </a>
+      <button id="nav-toggle" class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+      <nav id="primary-nav" class="primary-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="final/index.html" class="visually-hidden">Final</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Renewable energy & robust electrical systems</h1>
+        <p>Design • Installation • Automation • Substations • Rural Lines</p>
+        <div class="hero-cta">
+          <a class="btn" href="services.html">Explore Services</a>
+          <button id="open-theme" class="btn secondary">Toggle theme</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro container">
+      <h2>Who we are</h2>
+      <p>Solvarsa is an electrical services firm specialized in solar photovoltaic systems, high-voltage substations, industrial automation, and rural distribution lines. We deliver projects from concept through commissioning with a focus on safety and performance.</p>
+    </section>
+
+    <section class="featured container" aria-labelledby="featured-heading">
+      <h2 id="featured-heading">Featured Services</h2>
+      <div id="featured-list" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p>&copy; <span id="year"></span> Solvarsa — Solar & Electrical Services</p>
+      </div>
+      <div>
+        <a href="attributions.html">Attributions</a> |
+        <a href="https://youtu.be/PUT-YOUR-VIDEO-ID" id="video-link" target="_blank" rel="noopener">Project Video</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="modal-root"></div>
+
+  <script type="module" src="scripts/main.js"></script>
+</body>
+</html>

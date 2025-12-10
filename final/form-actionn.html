@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Form Submission — Solvarsa</title>
+  <meta name="description" content="Submitted contact form data." />
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand"><img src="images/logo.svg" alt="Solvarsa logo" />Solvarsa</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Form Submission</h1>
+    <div id="results"></div>
+    <p><a href="contact.html">Return to contact</a></p>
+  </main>
+
+  <script>
+    // Read url search params and display
+    const params = new URLSearchParams(window.location.search);
+    const output = document.getElementById('results');
+    if (!params.toString()) {
+      output.innerHTML = '<p>No form data found.</p>';
+    } else {
+      const list = document.createElement('dl');
+      for (const [key,value] of params.entries()) {
+        const dt = document.createElement('dt'); dt.textContent = key;
+        const dd = document.createElement('dd'); dd.textContent = value;
+        list.appendChild(dt); list.appendChild(dd);
+      }
+      output.appendChild(list);
+    }
+  </script>
+</body>
+</html>
