@@ -70,3 +70,30 @@ a:focus, button:focus, input:focus{outline:3px solid rgba(21,101,216,0.25); outl
 .form-actions{display:flex; gap:.5rem; justify-content:flex-start}
 
 
+/* =======================
+   NAVIGATION
+======================= */
+
+.primary-nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Botón hamburguesa */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Icono hamburguesa */
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  display: block;
+  width: 25px;
+  height:

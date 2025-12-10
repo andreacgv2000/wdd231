@@ -19,17 +19,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   /* =======================
-     NAV TOGGLE
-  ======================= */
-  const navBtn = document.getElementById('nav-toggle');
-  const nav = document.getElementById('primary-nav');
-  if (navBtn && nav) {
-    navBtn.addEventListener('click', () => {
-      const expanded = navBtn.getAttribute('aria-expanded') === 'true';
-      navBtn.setAttribute('aria-expanded', String(!expanded));
-      nav.style.display = expanded ? '' : 'block';
-    });
-  }
+   NAV TOGGLE (HAMBURGER)
+======================= */
+const navBtn = document.getElementById('nav-toggle');
+const nav = document.getElementById('primary-nav');
+
+if (navBtn && nav) {
+  navBtn.addEventListener('click', () => {
+    const expanded = navBtn.getAttribute('aria-expanded') === 'true';
+    navBtn.setAttribute('aria-expanded', String(!expanded));
+    nav.classList.toggle('open');
+  });
+}
 
   /* =======================
      MODAL
