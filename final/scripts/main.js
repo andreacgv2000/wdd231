@@ -1,95 +1,136 @@
-// js/main.js
-import { fetchServices } from './api.js';
-import { createModal } from './modal.js';
-import { renderFeatured, renderList } from './render.js';
-
 document.addEventListener('DOMContentLoaded', async () => {
-  // set years
-  document.getElementById('year')?.textContent = new Date().getFullYear();
-  document.getElementById('year-2')?.textContent = new Date().getFullYear();
-  document.getElementById('year-3')?.textContent = new Date().getFullYear();
 
-  // nav toggle
-  function wireNav(buttonId, navId) {
-    const btn = document.getElementById(buttonId);
-    const nav = document.getElementById(navId);
-    if (!btn || !nav) return;
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
+  /* =======================
+     YEAR
+  ======================= */
+  const year2 = document.getElementById('year-2');
+  if (year2) year2.textContent = new Date().getFullYear();
+
+
+  /* =======================
+     NAV TOGGLE
+  ======================= */
+  const navBtn = document.getElementById('nav-toggle-2');
+  const nav = document.getElementById('primary-nav-2');
+
+  if (navBtn && nav) {
+    navBtn.addEventListener('click', () => {
+      const expanded = navBtn.getAttribute('aria-expanded') === 'true';
+      navBtn.setAttribute('aria-expanded', String(!expanded));
       nav.style.display = expanded ? '' : 'block';
     });
   }
-  wireNav('nav-toggle','primary-nav');
-  wireNav('nav-toggle-2','primary-nav-2');
-  wireNav('nav-toggle-3','primary-nav-3');
 
-  // theme toggle via localStorage
-  const themeBtn = document.getElementById('open-theme');
-  if (themeBtn) {
-    const theme = localStorage.getItem('sv-theme') || 'light';
-    document.documentElement.setAttribute('data-theme', theme);
-    themeBtn.addEventListener('click', ()=> {
-      const cur = document.documentElement.getAttribute('data-theme') || 'light';
-      const next = cur === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('sv-theme', next);
-    });
+
+  /* =======================
+     MODAL
+  ======================= */
+  const modalRoot = document.getElementById('modal-root');
+
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.style.display = 'none';
+
+  overlay.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+  `;
+
+  modalRoot.appendChild(overlay);
+
+  const modalBody = overlay.querySelector('.modal-body');
+  const closeBtn = overlay.querySelector('.modal-close');
+
+  function openModal(html) {
+    modalBody.innerHTML = html;
+    overlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
   }
 
-  const modal = createModal();
+  function closeModal() {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
 
-  // fetch and render data
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+
+  /* =======================
+     FETCH SERVICES (REQUIRED)
+  ======================= */
+  let services = [];
+
   try {
-    const services = await fetchServices(); // try...catch inside api
-    // ensure we have at least 15 items
-    if (!Array.isArray(services) || services.length < 15) {
-      console.warn('Less than 15 items returned; check data/services.json');
-    }
-
-    // Featured (home)
-    const featuredContainer = document.getElementById('featured-list');
-    if (featuredContainer) renderFeatured(featuredContainer, services);
-
-    // Services page list
-    const listContainer = document.getElementById('services-list');
-    if (listContainer) renderList(listContainer, services, modal);
-
-    // Save a copy in localStorage to demonstrate persistence
-    localStorage.setItem('sv-services-cache', JSON.stringify(services));
-
-    // Example of using an array method (map -> create a list of tags)
-    const allTags = [...new Set(services.flatMap(s => s.tags))];
-    // optionally show tags in console
-    console.info('Service tags:', allTags);
-
-  } catch (err) {
-    // show a friendly message in the UI if possible
-    const listContainer = document.getElementById('services-list');
-    if (listContainer) listContainer.innerHTML = '<p>Could not load services. Please try again later.</p>';
+    const response = await fetch('data/services.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Fetch failed');
+    services = await response.json();
+  } catch (error) {
+    const list = document.getElementById('services-list');
+    if (list) list.innerHTML = '<p>Unable to load services at this time.</p>';
+    return;
   }
 
-  // Contact form: save draft to localStorage
-  const saveBtn = document.getElementById('save-draft');
-  const form = document.getElementById('contact-form');
-  if (saveBtn && form) {
-    saveBtn.addEventListener('click', () => {
-      const fd = new FormData(form);
-      const obj = Object.fromEntries(fd.entries());
-      localStorage.setItem('sv-contact-draft', JSON.stringify(obj));
-      alert('Draft saved locally');
+
+  /* =======================
+     LOCAL STORAGE
+  ======================= */
+  localStorage.setItem('sv-services', JSON.stringify(services));
+
+
+  /* =======================
+     RENDER SERVICES
+  ======================= */
+  const container = document.getElementById('services-list');
+  const template = document.getElementById('service-card-template');
+
+  if (!container || !template) return;
+
+  container.innerHTML = '';
+
+  services.forEach(service => {
+    const card = template.content.cloneNode(true);
+
+    const img = card.querySelector('.card-image');
+    img.src = service.image;
+    img.alt = service.title;
+
+    card.querySelector('.card-title').textContent = service.title;
+    card.querySelector('.card-desc').textContent = service.summary;
+
+    const meta = card.querySelector('.card-meta');
+    meta.innerHTML = `
+      <li><strong>Location:</strong> ${service.location}</li>
+      <li><strong>Capacity:</strong> ${service.capacity_kw ?? 'N/A'}</li>
+      <li><strong>Tags:</strong> ${service.tags.join(', ')}</li>
+    `;
+
+    const button = card.querySelector('.view-more');
+    button.addEventListener('click', () => {
+      openModal(`
+        <h2>${service.title}</h2>
+        <p>${service.summary}</p>
+        <ul>
+          <li><strong>ID:</strong> ${service.id}</li>
+          <li><strong>Location:</strong> ${service.location}</li>
+          <li><strong>Capacity:</strong> ${service.capacity_kw ?? 'N/A'}</li>
+          <li><strong>Tags:</strong> ${service.tags.join(', ')}</li>
+        </ul>
+      `);
     });
-    // attempt to restore
-    const draft = localStorage.getItem('sv-contact-draft');
-    if (draft) {
-      try {
-        const data = JSON.parse(draft);
-        for (const [k,v] of Object.entries(data)) {
-          const el = form.elements[k];
-          if (el) el.value = v;
-        }
-      } catch {}
-    }
-  }
 
+    container.appendChild(card);
+  });
+
+  console.info(`✅ ${services.length} services loaded successfully`);
 });
