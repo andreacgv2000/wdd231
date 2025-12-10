@@ -134,3 +134,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   console.info(`✅ ${services.length} services loaded successfully`);
 });
+
+
+
+// Footer: current year
+const yearSpan = document.getElementById("year-2");
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
+}
+
+// Footer: last updated date & time
+const updatedSpan = document.getElementById("last-updated");
+if (updatedSpan) {
+  const lastModified = new Date(document.lastModified);
+
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  };
+
+  updatedSpan.textContent = lastModified.toLocaleString("en-US", options);
+}
