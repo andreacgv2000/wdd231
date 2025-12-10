@@ -1,18 +1,28 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
   /* =======================
-     YEAR
+     FOOTER DATA
   ======================= */
-  const year2 = document.getElementById('year-2');
-  if (year2) year2.textContent = new Date().getFullYear();
+  const year = document.getElementById("year-2");
+  if (year) year.textContent = new Date().getFullYear();
 
+  const updated = document.getElementById("last-updated");
+  if (updated) {
+    const d = new Date(document.lastModified);
+    updated.textContent = d.toLocaleString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  }
 
   /* =======================
      NAV TOGGLE
   ======================= */
-  const navBtn = document.getElementById('nav-toggle-2');
-  const nav = document.getElementById('primary-nav-2');
-
+  const navBtn = document.getElementById('nav-toggle');
+  const nav = document.getElementById('primary-nav');
   if (navBtn && nav) {
     navBtn.addEventListener('click', () => {
       const expanded = navBtn.getAttribute('aria-expanded') === 'true';
@@ -21,140 +31,118 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-
   /* =======================
      MODAL
   ======================= */
   const modalRoot = document.getElementById('modal-root');
+  let openModal = () => {};
 
-  const overlay = document.createElement('div');
-  overlay.className = 'modal-overlay';
-  overlay.style.display = 'none';
-
-  overlay.innerHTML = `
-    <div class="modal" role="dialog" aria-modal="true">
-      <div class="modal-content">
-        <button class="modal-close" aria-label="Close modal">&times;</button>
-        <div class="modal-body"></div>
-      </div>
-    </div>
-  `;
-
-  modalRoot.appendChild(overlay);
-
-  const modalBody = overlay.querySelector('.modal-body');
-  const closeBtn = overlay.querySelector('.modal-close');
-
-  function openModal(html) {
-    modalBody.innerHTML = html;
-    overlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
+  if (modalRoot) {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
     overlay.style.display = 'none';
-    document.body.style.overflow = '';
+
+    overlay.innerHTML = `
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-content">
+          <button class="modal-close">&times;</button>
+          <div class="modal-body"></div>
+        </div>
+      </div>
+    `;
+    modalRoot.appendChild(overlay);
+
+    const modalBody = overlay.querySelector('.modal-body');
+    const closeBtn = overlay.querySelector('.modal-close');
+
+    openModal = html => {
+      modalBody.innerHTML = html;
+      overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    };
+
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', e => e.target === overlay && close());
+    document.addEventListener('keydown', e => e.key === 'Escape' && close());
   }
-
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) closeModal();
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
-  });
-
 
   /* =======================
-     FETCH SERVICES (REQUIRED)
+     FETCH SERVICES
   ======================= */
   let services = [];
 
   try {
-    const response = await fetch('data/services.json', { cache: 'no-store' });
-    if (!response.ok) throw new Error('Fetch failed');
-    services = await response.json();
-  } catch (error) {
-    const list = document.getElementById('services-list');
-    if (list) list.innerHTML = '<p>Unable to load services at this time.</p>';
+    const res = await fetch('data/services.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Fetch failed');
+    services = await res.json();
+  } catch (err) {
+    console.error(err);
     return;
   }
 
-
-  /* =======================
-     LOCAL STORAGE
-  ======================= */
   localStorage.setItem('sv-services', JSON.stringify(services));
 
+  /* =======================
+     FEATURED (HOME)
+  ======================= */
+  const featured = document.getElementById('featured-list');
+  if (featured) {
+    services.slice(0, 3).forEach(s => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${s.image}" alt="${s.title}" loading="lazy">
+        <div class="card-body">
+          <h3>${s.title}</h3>
+          <p>${s.summary}</p>
+          <button class="btn">View More</button>
+        </div>
+      `;
+      card.querySelector('button').addEventListener('click', () => {
+        openModal(`
+          <h2>${s.title}</h2>
+          <p>${s.summary}</p>
+        `);
+      });
+      featured.appendChild(card);
+    });
+  }
 
   /* =======================
-     RENDER SERVICES
+     SERVICES PAGE
   ======================= */
-  const container = document.getElementById('services-list');
+  const list = document.getElementById('services-list');
   const template = document.getElementById('service-card-template');
 
-  if (!container || !template) return;
+  if (list && template) {
+    services.forEach(s => {
+      const node = template.content.cloneNode(true);
 
-  container.innerHTML = '';
+      node.querySelector('.card-image').src = s.image;
+      node.querySelector('.card-image').alt = s.title;
+      node.querySelector('.card-title').textContent = s.title;
+      node.querySelector('.card-desc').textContent = s.summary;
+      node.querySelector('.card-meta').innerHTML = `
+        <li>${s.location}</li>
+        <li>${s.capacity_kw ?? 'N/A'}</li>
+        <li>${s.tags.join(', ')}</li>
+      `;
 
-  services.forEach(service => {
-    const card = template.content.cloneNode(true);
+      node.querySelector('.view-more').addEventListener('click', () => {
+        openModal(`
+          <h2>${s.title}</h2>
+          <p>${s.summary}</p>
+        `);
+      });
 
-    const img = card.querySelector('.card-image');
-    img.src = service.image;
-    img.alt = service.title;
-
-    card.querySelector('.card-title').textContent = service.title;
-    card.querySelector('.card-desc').textContent = service.summary;
-
-    const meta = card.querySelector('.card-meta');
-    meta.innerHTML = `
-      <li><strong>Location:</strong> ${service.location}</li>
-      <li><strong>Capacity:</strong> ${service.capacity_kw ?? 'N/A'}</li>
-      <li><strong>Tags:</strong> ${service.tags.join(', ')}</li>
-    `;
-
-    const button = card.querySelector('.view-more');
-    button.addEventListener('click', () => {
-      openModal(`
-        <h2>${service.title}</h2>
-        <p>${service.summary}</p>
-        <ul>
-          <li><strong>ID:</strong> ${service.id}</li>
-          <li><strong>Location:</strong> ${service.location}</li>
-          <li><strong>Capacity:</strong> ${service.capacity_kw ?? 'N/A'}</li>
-          <li><strong>Tags:</strong> ${service.tags.join(', ')}</li>
-        </ul>
-      `);
+      list.appendChild(node);
     });
+  }
 
-    container.appendChild(card);
-  });
-
-  console.info(`✅ ${services.length} services loaded successfully`);
+  console.log(`✅ Loaded ${services.length} services`);
 });
-
-
-
-// Footer: current year
-const yearSpan = document.getElementById("year-2");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
-
-// Footer: last updated date & time
-const updatedSpan = document.getElementById("last-updated");
-if (updatedSpan) {
-  const lastModified = new Date(document.lastModified);
-
-  const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit"
-  };
-
-  updatedSpan.textContent = lastModified.toLocaleString("en-US", options);
-}
