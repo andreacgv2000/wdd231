@@ -96,12 +96,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       const card = document.createElement('article');
       card.className = 'card';
       card.innerHTML = `
-        <img src="${s.image}" alt="${s.title}" loading="lazy">
-        <div class="card-body">
-          <h3>${s.title}</h3>
-          <p>${s.summary}</p>
-          <button class="btn">View More</button>
-        </div>
+  <img class="card-image" src="${s.image}" alt="${s.title}" loading="lazy">
+  <div class="card-body">
+    <h3 class="card-title">${s.title}</h3>
+    <p class="card-desc">${s.summary}</p>
+    <button class="btn">View More</button>
+  </div>
+`;
+
       `;
       card.querySelector('button').addEventListener('click', () => {
         openModal(`
